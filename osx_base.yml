@@ -1,0 +1,63 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  sudo: no
+  vars:
+      homebrew_taps:
+          - caskroom/cask
+          - caskroom/fonts
+      homebrew_packages:
+          - ansible
+          - brew-cask
+          - git
+          - wget
+          - w3m
+          - tree
+          - tmux
+          - ctags
+          - curl
+          - openssl
+          - { name: openssl, state: linked, install_options: force }
+          - jq
+          - peco
+          - ghq
+          - gnu-sed
+          - bash
+          - vim
+      homebrew_cask_packages:
+          - iterm2
+          - karabiner
+          - virtualbox
+          - vagrant
+          - atom
+          - appcleaner
+          - xtrafinder
+          - caffeine
+          - macvim
+          - font-source-han-code-jp
+
+      tasks:
+          - name: homebrew をアップデート
+            homebrew: update_homebrew=yes
+
+          - name: homebrew の tap リポジトリを追加
+            homebrew_tap: tap={{ item }} state=present
+            with_items: homebrew_taps
+
+          - name: brew パッケージのインストール
+            homebrew: >
+                name={{ item.name | default(item) }}
+                state={{ item.state | default('latest') }}
+                install_options={{
+                    item.install_options | default() | join(,)
+                    if item.install_options is not string
+                    else item.install_options
+                }}
+            with_items: homebrew_packages
+
+          - name: brew-cask パッケージのインストール
+            homebrew_cask: >
+                name={{ item.name | default(item) }}
+                state={{ item.state | default('present') }}
+            with_items: homebrew_cask_packages
+
