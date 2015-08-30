@@ -8,33 +8,37 @@
           - caskroom/fonts
       homebrew_packages:
           - ansible
+          - bash
           - brew-cask
-          - git
-          - wget
-          - w3m
-          - tree
-          - tmux
           - ctags
           - curl
+          - ghq
+          - git
+          - gnu-sed
+          - jq
           - openssl
           - { name: openssl, state: linked, install_options: force }
-          - jq
           - peco
-          - ghq
-          - gnu-sed
-          - bash
+          - tmux
+          - tree
           - vim
+          - wget
+          - w3m
       homebrew_cask_packages:
+          - appcleaner
+          - atom
+          - caffeine
+          - dropbox
+          - evernote
+          - font-source-han-code-jp
+          - google-chrome
           - iterm2
           - karabiner
+          - macvim
+          - skitch
+          - xtrafinder
           - virtualbox
           - vagrant
-          - atom
-          - appcleaner
-          - xtrafinder
-          - caffeine
-          - macvim
-          - font-source-han-code-jp
 
       tasks:
           - name: homebrew をアップデート
@@ -49,7 +53,7 @@
                 name={{ item.name | default(item) }}
                 state={{ item.state | default('latest') }}
                 install_options={{
-                    item.install_options | default() | join(,)
+                    item.install_options | default() | join(',')
                     if item.install_options is not string
                     else item.install_options
                 }}
