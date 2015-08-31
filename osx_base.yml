@@ -39,7 +39,6 @@
       - macvim
       - skitch
       - xtrafinder
-      - virtualbox
       - vagrant
 
   tasks:
