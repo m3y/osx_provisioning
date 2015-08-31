@@ -3,65 +3,71 @@
   gather_facts: no
   sudo: no
   vars:
-      homebrew_taps:
-          - caskroom/cask
-          - caskroom/fonts
-      homebrew_packages:
-          - ansible
-          - bash
-          - brew-cask
-          - ctags
-          - curl
-          - ghq
-          - git
-          - gnu-sed
-          - jq
-          - openssl
-          - { name: openssl, state: linked, install_options: force }
-          - peco
-          - tmux
-          - tree
-          - vim
-          - wget
-          - w3m
-      homebrew_cask_packages:
-          - appcleaner
-          - atom
-          - caffeine
-          - dropbox
-          - evernote
-          - font-source-han-code-jp
-          - google-chrome
-          - iterm2
-          - karabiner
-          - macvim
-          - skitch
-          - xtrafinder
-          - virtualbox
-          - vagrant
+    homebrew_taps:
+      - caskroom/cask
+      - caskroom/fonts
+    homebrew_packages:
+      - ansible
+      - bash
+      - brew-cask
+      - ctags
+      - curl
+      - ghq
+      - git
+      - gnu-sed
+      - jq
+      - openssl
+      - { name: openssl, state: linked, install_options: force }
+      - peco
+      - readline
+      - tmux
+      - tree
+      - vim
+      - wget
+      - w3m
+    homebrew_cask_packages:
+      - appcleaner
+      - atom
+      - caffeine
+      - dropbox
+      - evernote
+      - font-source-han-code-jp
+      - google-chrome
+      - iterm2
+      - karabiner
+      - macvim
+      - skitch
+      - xtrafinder
+      - virtualbox
+      - vagrant
 
-      tasks:
-          - name: homebrew をアップデート
-            homebrew: update_homebrew=yes
+  tasks:
+    - name: homebrew をアップデート
+      homebrew: update_homebrew=yes
 
-          - name: homebrew の tap リポジトリを追加
-            homebrew_tap: tap={{ item }} state=present
-            with_items: homebrew_taps
+    - name: homebrew の tap リポジトリを追加
+      homebrew_tap: tap={{ item }} state=present
+      with_items: homebrew_taps
 
-          - name: brew パッケージのインストール
-            homebrew: >
-                name={{ item.name | default(item) }}
-                state={{ item.state | default('latest') }}
-                install_options={{
-                    item.install_options | default() | join(',')
-                    if item.install_options is not string
-                    else item.install_options
-                }}
-            with_items: homebrew_packages
+    - name: brew パッケージのインストール
+      homebrew: >
+        name={{ item.name | default(item) }}
+        state={{ item.state | default('latest') }}
+        install_options={{
+          item.install_options | default() | join(',')
+          if item.install_options is not string
+          else item.install_options
+        }}
+      with_items: homebrew_packages
 
-          - name: brew-cask パッケージのインストール
-            homebrew_cask: >
-                name={{ item.name | default(item) }}
-                state={{ item.state | default('present') }}
-            with_items: homebrew_cask_packages
+    - name: brew-cask パッケージのインストール
+      homebrew_cask: >
+        name={{ item.name | default(item) }}
+        state={{ item.state | default('present') }}
+      with_items: homebrew_cask_packages
 
+    - name: solarized color scheme の取得
+      git:
+        repo=git://github.com/altercation/solarized.git
+        dest=~/.ghq/github.com/altercation/solarized.git
+        accept_hostkey=yes
