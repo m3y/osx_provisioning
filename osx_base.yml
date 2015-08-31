@@ -35,6 +35,7 @@
       - google-chrome
       - iterm2
       - karabiner
+      - kobito
       - macvim
       - skitch
       - xtrafinder
@@ -70,4 +71,5 @@
       git:
         repo=git://github.com/altercation/solarized.git
         dest=~/.ghq/github.com/altercation/solarized.git
+        force=yes
         accept_hostkey=yes
