@@ -6,12 +6,14 @@
     homebrew_taps:
       - caskroom/cask
       - caskroom/fonts
+      - sanemat/font
     homebrew_packages:
       - ansible
       - bash
       - brew-cask
       - ctags
       - curl
+      - fontforge
       - ghq
       - git
       - gnu-sed
@@ -20,6 +22,7 @@
       - { name: openssl, state: linked, install_options: force }
       - peco
       - readline
+      - { name: ricty, install_options: [powerline, vim-powerline] }
       - tmux
       - tree
       - vim
@@ -72,3 +75,13 @@
         dest=~/.ghq/github.com/altercation/solarized.git
         force=yes
         accept_hostkey=yes
+
+    - name: ricty の配置
+      shell: cp -f $(brew --cellar ricty)/*/share/fonts/*Powerline.ttf ~/Library/Fonts/
+      args:
+          creates: ~/Library/Fonts/Ricty-Bold-Powerline.ttf
+          notify: run fc-cache
+
+  handlers:
+    - name: run fc-cache
+      shell: fc-cache -vf
