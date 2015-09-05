@@ -17,6 +17,7 @@
       - ghq
       - git
       - gnu-sed
+      - graphviz
       - jq
       - openssl
       - { name: openssl, state: linked, install_options: force }
