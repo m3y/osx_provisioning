@@ -15,3 +15,7 @@ $ brew install ansible
 ```
 $ HOMEBREW_CASK_OPTS="--appdir=/Applications" ansible-playbook -i hosts -vv osx_base.yml
 ```
+
+## 注意事項
+- Virtual BOX は、現状入る最新版にバグがあるため、手動インストールに変更。
+- Kobito は、現状入る最新版が古いので、手動インストールに変更。
