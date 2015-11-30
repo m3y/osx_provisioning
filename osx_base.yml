@@ -13,6 +13,7 @@
       - brew-cask
       - ctags
       - curl
+      - docker-machine
       - fontforge
       - ghq
       - git
