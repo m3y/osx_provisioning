@@ -45,6 +45,7 @@
       - skitch
       - xtrafinder
       - vagrant
+      - virtualbox
 
   tasks:
     - name: homebrew をアップデート
