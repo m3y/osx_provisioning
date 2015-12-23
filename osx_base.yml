@@ -27,6 +27,7 @@
       - peco
       - readline
       - { name: ricty, install_options: [powerline, vim-powerline] }
+      - tig
       - tmux
       - tree
       - vim
