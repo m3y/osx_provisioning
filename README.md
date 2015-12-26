@@ -13,8 +13,5 @@ $ brew install ansible
 
 ## 反映方法
 ```
-$ HOMEBREW_CASK_OPTS="--appdir=/Applications" ansible-playbook -i hosts -vv osx_base.yml
+$ ansible-playbook -i hosts -vv osx_base.yml
 ```
-
-## 注意事項
-- Kobito は、現状入る最新版が古いので、手動インストールに変更。
