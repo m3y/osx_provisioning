@@ -36,6 +36,7 @@
     homebrew_cask_packages:
       - appcleaner
       - atom
+      - bettertouchtool
       - caffeine
       - dropbox
       - evernote
