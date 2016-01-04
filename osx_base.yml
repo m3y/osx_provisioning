@@ -10,6 +10,7 @@
       - caskroom/cask
       - caskroom/fonts
       - sanemat/font
+      - tldr-pages/tldr
     homebrew_packages:
       - ansible
       - bash
@@ -28,6 +29,7 @@
       - readline
       - { name: ricty, install_options: [powerline, vim-powerline] }
       - tig
+      - tldr
       - tmux
       - tree
       - vim
@@ -46,7 +48,6 @@
       - iterm2
       - karabiner
       - kindle
-      - kobito
       - macvim
       - skitch
       - xtrafinder
