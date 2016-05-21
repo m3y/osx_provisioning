@@ -85,11 +85,6 @@
         accept_hostkey=yes
 
     - name: ricty の配置
-      shell: cp -f $(brew --cellar ricty)/*/share/fonts/*Powerline.ttf ~/Library/Fonts/
+      shell: cp -f $(brew --cellar ricty)/*/share/fonts/*Powerline.ttf ~/Library/Fonts/ && fc-cache -vf
       args:
           creates: ~/Library/Fonts/Ricty-Bold-Powerline.ttf
-          notify: run fc-cache
-
-  handlers:
-    - name: run fc-cache
-      shell: fc-cache -vf
