@@ -7,49 +7,30 @@
     HOMEBREW_CASK_OPTS: "--appdir=/Applications"
   vars:
     homebrew_taps:
-      - caskroom/cask
-      - caskroom/fonts
       - sanemat/font
-      - tldr-pages/tldr
     homebrew_packages:
       - ansible
       - bash
       - ctags
       - curl
-      - docker-machine
+      - exa
+      - figlet
       - fontforge
       - ghq
       - git
       - gnu-sed
+      - go
+      - graphviz
       - jq
+      - lolcat
       - openssl
       - { name: openssl, state: linked, install_options: force }
       - peco
       - readline
       - { name: ricty, install_options: [powerline, vim-powerline] }
-      - tig
-      - tldr
       - tmux
-      - tree
       - vim
       - wget
-      - w3m
-    homebrew_cask_packages:
-      - appcleaner
-      - atom
-      - caffeine
-      - dropbox
-      - evernote
-      - font-source-han-code-jp
-      - google-chrome
-      - google-japanese-ime
-      - iterm2
-      - karabiner
-      - kindle
-      - macvim
-      - skitch
-      - vagrant
-      - virtualbox
 
   tasks:
     - name: homebrew をアップデート
@@ -69,12 +50,6 @@
           else item.install_options
         }}
       with_items: "{{homebrew_packages}}"
-
-    - name: brew-cask パッケージのインストール
-      homebrew_cask: >
-        name={{ item.name | default(item) }}
-        state={{ item.state | default('present') }}
-      with_items: "{{homebrew_cask_packages}}"
 
     - name: solarized color scheme の取得
       git:
