@@ -29,3 +29,5 @@ $ ansible-playbook -i hosts -vv osx_base.yml
 - skitch
 - wireshark
 - Intellij-CE
+- evernote
+- dropbox
