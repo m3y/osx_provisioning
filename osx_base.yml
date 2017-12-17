@@ -8,11 +8,9 @@
   vars:
     homebrew_taps:
       - sanemat/font
+      - caskroom/cask
     homebrew_packages:
-      - ansible
-      - bash
       - ctags
-      - curl
       - exa
       - figlet
       - fontforge
@@ -20,17 +18,28 @@
       - git
       - gnu-sed
       - go
-      - graphviz
+      - httpie
       - jq
       - lolcat
       - openssl
       - { name: openssl, state: linked, install_options: force }
-      - peco
+      - pass
+      - pinentry-mac
       - readline
       - { name: ricty, install_options: [powerline, vim-powerline] }
       - tmux
       - vim
       - wget
+      - zsh
+    homebrew_cask_packages:
+      - appcleaner
+      - caffeine
+      - dropbox
+      - google-japanese-ime
+      - iterm2
+      - karabiner-elements
+      - slack
+      - srware-iron
 
   tasks:
     - name: homebrew をアップデート
@@ -50,6 +59,12 @@
           else item.install_options
         }}
       with_items: "{{homebrew_packages}}"
+
+    - name: brew-cask パッケージのインストール
+      homebrew_cask: >
+        name={{ item.name | default(item) }}
+        state={{ item.state | default('present') }}
+      with_items: "{{homebrew_cask_packages}}"
 
     - name: solarized color scheme の取得
       git:
