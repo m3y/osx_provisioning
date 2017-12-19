@@ -30,6 +30,7 @@
       - tmux
       - vim
       - wget
+      - zplug
       - zsh
     homebrew_cask_packages:
       - appcleaner
