@@ -10,6 +10,7 @@
       - sanemat/font
       - caskroom/cask
     homebrew_packages:
+      - colordiff
       - ctags
       - exa
       - figlet
@@ -20,6 +21,7 @@
       - gnu-sed
       - go
       - httpie
+      - hub
       - jq
       - lolcat
       - openssl
