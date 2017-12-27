@@ -29,11 +29,10 @@
       - pass
       - pinentry-mac
       - readline
-      - { name: ricty, install_options: [powerline, vim-powerline] }
+      - ricty
       - tmux
       - vim
       - wget
-      - zplug
       - zsh
     homebrew_cask_packages:
       - appcleaner
@@ -76,8 +75,3 @@
         dest=~/.ghq/github.com/altercation/solarized.git
         force=yes
         accept_hostkey=yes
-
-    - name: ricty の配置
-      shell: cp -f $(brew --cellar ricty)/*/share/fonts/*Powerline.ttf ~/Library/Fonts/ && fc-cache -vf
-      args:
-          creates: ~/Library/Fonts/Ricty-Bold-Powerline.ttf
