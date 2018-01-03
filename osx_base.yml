@@ -39,11 +39,11 @@
       - appcleaner
       - caffeine
       - dropbox
+      - google-chrome
       - google-japanese-ime
       - iterm2
       - karabiner-elements
       - slack
-      - srware-iron
 
   tasks:
     - name: homebrew をアップデート
